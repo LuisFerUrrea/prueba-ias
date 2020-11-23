@@ -1,0 +1,61 @@
+<div class="card bg-light">
+    <div class="card-header">Reporte semanal horas trabajadas</div>
+    <div class="card-body">
+        <form #reporteSemanalForm="ngForm">
+            <div class="form-group row">
+                <label for="nombre" class="col-form-label col-sm-2">Codigo del tecnico</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="idtecnico" name="idtecnico" [(ngModel)]="idTecnico">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="week" class="col-for-label col-sm-2">Semana</label>
+                <div class="col-sm-6">
+                    <input type="week" class="form-control" name="week" id="week" [(ngModel)]="semana" required>
+                </div>
+            </div>
+            <div class="form-group row ">
+                <div class="col-sm-6 ">
+                    <button class="btn btn-primary " (click)="consultarHorasSemanales(reporteSemanalForm)" role="button ">Consultar</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <table class="table table-bordered table-striped my-1">
+                <thead>
+                    <tr>
+                        <th>Tipo de hora trabajada</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Horas normales</td>
+                        <td>{{this.dtoHoras.hBasica}}</td>
+                    </tr>
+                    <tr>
+                        <td>Horas nocturnas</td>
+                        <td>{{this.dtoHoras.hNocturna}}</td>
+                    </tr>
+                    <tr>
+                        <td>Horas dominicales</td>
+                        <td>{{this.dtoHoras.hDominical}}</td>
+                    </tr>
+                    <tr>
+                        <td>Horas normales extras</td>
+                        <td>{{this.dtoHoras.hBasicaExtra}}</td>
+                    </tr>
+                    <tr>
+                        <td>Horas nocturnas extras</td>
+                        <td>{{this.dtoHoras.hNocturnaExtra}}</td>
+                    </tr>
+                    <tr>
+                        <td>Horas dominicales extras</td>
+                        <td>{{this.dtoHoras.hDominicalExtra}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5 class="float-right"><span>Total horas trabajadas en la semana</span>: <span class="badge badge-secondary">{{sumaTotal}}</span></h5>
+        </div>
+    </div>
+</div>

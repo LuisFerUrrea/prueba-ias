@@ -1,0 +1,64 @@
+<div class="card bg-dark text-white">
+    <div class="card-header">Reporte Atención</div>
+    <div class="card-body">
+        <form #atencionForm="ngForm">
+            <div class="form-group row">
+                <label for="nombre" class="col-form-label col-sm-2">Codigo del servicio</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="reporteAtencion.idServicio" name="idServicio" #idServicio="ngModel" required>
+                    <div class="alert alert-danger" *ngIf="idServicio.invalid && (idServicio.dirty || idServicio.touched)">
+                        <div *ngIf="idServicio.errors.required">
+                            Codigo del servicio es requerido.
+                        </div>
+                        <div *ngIf="idServicio.errors.minlength">
+                            Codigo del servicio debe tener al menos 4 caracteres.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="nombre" class="col-form-label col-sm-2">Codigo del tecnico</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="reporteAtencion.idTecnico" name="idTecnico" #idTecnico="ngModel" required>
+                    <div class="alert alert-danger" *ngIf="idTecnico.invalid && (idTecnico.dirty || idTecnico.touched)">
+                        <div *ngIf="idTecnico.errors.required">
+                            Codigo del tecnico es requerido.
+                        </div>
+                        <div *ngIf="idTecnico.errors.minlength">
+                            Codigo del tecnico debe tener al menos 4 caracteres.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fechaInicio" class="col-form-label col-sm-2">Fecha inicial</label>
+                <div class="col-sm-6">
+                    <input type="datetime-local" class="form-control" [(ngModel)]="reporteAtencion.fechaInicio" name="fechaInicio" #fechaInicio="ngModel" required>
+                    <div class="alert alert-danger" *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)">
+                        <div *ngIf="fechaInicio.errors.required">
+                            La fecha inicial es requerida.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fechaFin" class="col-form-label col-sm-2">Fecha final</label>
+                <div class="col-sm-6">
+                    <input type="datetime-local" class="form-control" [(ngModel)]="reporteAtencion.fechaFin" name="fechaFin" #fechaFin="ngModel" required>
+                    <div class="alert alert-danger" *ngIf="fechaFin.invalid && (fechaFin.dirty || fechaFin.touched)">
+                        <div *ngIf="fechaFin.errors.required || fechaInicio.value() >= fechaFin.value()">
+                            La fecha final es requerida.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row ">
+                <div class="col-sm-6 ">
+                    <button class="btn btn-primary " (click)="createReporteAtencion(atencionForm)" role="button " [disabled]="!atencionForm.form.valid ">Crear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
